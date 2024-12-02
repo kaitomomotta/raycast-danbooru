@@ -1,4 +1,4 @@
-import { Form, ActionPanel, Action, showToast, Detail, List, useNavigation } from "@raycast/api";
+import { Form, ActionPanel, Action, showToast, useNavigation } from "@raycast/api";
 import { useState } from "react";
 import DanbooruList from "./components/danbooruList";
 import {DanbooruListProps} from "./types/types";
@@ -11,7 +11,7 @@ export default function Command() {
   const { push } = useNavigation();
 
   function handleSubmit(values: DanbooruListProps) {
-    showToast({ title: "Submitted form", message: "See logs for submitted values" });
+    showToast({ title: "Fetching images..."});
     push(<DanbooruList tag1={values.tag1} tag2={values.tag2} sfw={values.sfw} numberOfPosts={values.numberOfPosts} />)
   }
 
@@ -27,7 +27,7 @@ export default function Command() {
         <Form.Description text="Tags are formatted in lowercase, with underscores separating words. Valid tags include 'genshin_impact' (fandom), 'kochou_shinobou' (character), 'sportswear' (visual element)" />
         <Form.TextField id="tag1" title="Tag 1" placeholder="Enter text" value={tag1} onChange={setTag1} />
         <Form.TextField id="tag2" title="Tag 2" placeholder="Enter text" value={tag2} onChange={setTag2} info="Danbooru limits to two tags for unauthentified and non-premium members." />
-        <Form.Checkbox id="sfw" label="Do not search for NSFW images" value={sfw} onChange={setSfw} />
+        <Form.Checkbox id="sfw" label="Only search for SFW images" value={sfw} onChange={setSfw} />
         <Form.Dropdown id="numberOfPosts" title="Number of posts to fetch" value={numberOfPosts} onChange={setNumberOfPosts} info="The higher the number, the longer the load time!">
           <Form.Dropdown.Item value="1" title="1" />
           <Form.Dropdown.Item value="10" title="10" />

@@ -1,6 +1,6 @@
-import { Form, ActionPanel, Action, showToast, Detail, List, Grid, getPreferenceValues } from "@raycast/api";
+import { showToast, Grid, getPreferenceValues } from "@raycast/api";
 import { useState, useEffect } from "react";
-import fetch from 'node-fetch'; // Import node-fetch
+import fetch from 'node-fetch';
 import { DanbooruListProps, PostDetailsProps } from "../types/types";
 import { ListActions } from "./listActions";
 
@@ -49,7 +49,6 @@ export default function DanbooruList(props: DanbooruListProps) {
     return (
         <Grid isLoading={isLoading}>
             {!isLoading && posts.map((post, index) => {
-                const postUrl = `https://danbooru.donmai.us/posts/${post.id}`;
                 const postDetails: PostDetailsProps = {
                     post: {
                         id: post.id,
