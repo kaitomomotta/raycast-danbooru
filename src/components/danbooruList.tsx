@@ -1,11 +1,11 @@
 import { showToast, Grid, getPreferenceValues } from "@raycast/api";
 import { useState, useEffect } from "react";
 import fetch from 'node-fetch';
-import { DanbooruListProps, PostDetailsProps } from "../types/types";
+import { DanbooruListProps, PostDetailsProps, PostProps } from "../types/types";
 import { ListActions } from "./listActions";
 
 export default function DanbooruList(props: DanbooruListProps) {
-    const [posts, setPosts] = useState<any[]>([]);
+    const [posts, setPosts] = useState<PostProps[]>([]);
     const [isLoading, setIsLoading] = useState<boolean>(true);
 
     async function fetchPosts() {
@@ -27,7 +27,7 @@ export default function DanbooruList(props: DanbooruListProps) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
 
-            const posts: any[] = await response.json() as any[];
+            const posts: PostProps[] = await response.json() as PostProps[];
             setPosts(posts);
         } catch (error) {
             if (error instanceof Error) {
@@ -64,7 +64,7 @@ export default function DanbooruList(props: DanbooruListProps) {
                 return (
                     <Grid.Item
                         key={index}
-                        title={post.tag_string || post.id.toString()}
+                        title={post.tag_string_general || post.id.toString()}
                         content={post.preview_file_url} // smaller, more compressed version of the file_url
                         actions={<ListActions {...postDetails} />}
                     />
