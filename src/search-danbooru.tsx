@@ -24,7 +24,7 @@ export default function Command() {
         }
       >
         <Form.Description text="Please enter the tags you wish to search for." />
-        <Form.Description text="Tags are formatted in lowercase, with underscores separating words. Valid tags include 'genshin_impact' (fandom), 'kochou_shinobou' (character), 'sportswear' (visual element)" />
+        <Form.Description text="Tags are optional and formatted in lowercase, with underscores separating words." />
         <Form.TextField id="tag1" title="Tag 1" placeholder="Enter text" value={tag1} onChange={setTag1} />
         <Form.TextField id="tag2" title="Tag 2" placeholder="Enter text" value={tag2} onChange={setTag2} info="Danbooru limits to two tags for unauthentified and non-premium members." />
         <Form.Checkbox id="sfw" label="Only search for SFW images" value={sfw} onChange={setSfw} />
